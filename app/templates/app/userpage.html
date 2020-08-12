@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Exchange</title>
+     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body>
+<h1>Exchange Dashboard</h1>
+<div>
+    {% load crispy_forms_tags %}
+     {% block content %}
+ {% if user.is_authenticated and not user.is_superuser%}
+     <h3>Welcome {{request.user.username }}</h3>
+    <a href="/logout"><button class="logoutbt">Logout</button></a>
+    <a href="/"><button class="homebt">Home</button></a>
+   <p>Your Balance is: {{btc}}BTC</p>
+    <p>Your Total Profit is {{profit}} $</p>
+
+  <h1>OrderBook</h1>
+
+   <div class="sellbook">
+    <h3>Sells</h3>
+  {{ sells |safe }}
+  </div>
+   <div class="buybook">
+    <h3>Buys</h3>
+    {{ buys |safe }}
+   </div>
+</div>
+<form method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit" value="Sell" name="sell">Sell</button>
+    <button type="submit" value="Buy" name="buy">Buy</button>
+</form>
+
+<h3>Open Orders</h3>
+<div class="sellbook">
+    <h4>Sells</h4>
+  {{ mysells |safe }}
+  </div>
+   <div class="buybook">
+    <h4>Buys</h4>
+    {{ mybuys |safe }}
+   </div>
+</div>
+
+{% else %}
+<h2>User not authenticated</h2>
+{% endif %}
+{% endblock %}
+</body>
+</html>

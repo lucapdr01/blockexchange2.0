@@ -1,0 +1,46 @@
+body {
+text-align: center;
+}
+div
+{
+display: inline-block;
+}
+.form-container
+{
+display:block;
+}
+form
+{
+display: block;
+text-align: center;
+}
+.logoutbt
+{
+  position: fixed;
+  right: 7px ;
+  top: 7px ;
+  text-align: center;
+   z-index: 1;
+}
+.homebt
+{
+  position: fixed;
+  left: 7px ;
+  top: 7px ;
+  text-align: center;
+   z-index: 1;
+}
+.sellbook
+{
+width: 80%;
+color: red;
+}
+.buybook
+{
+width: 80%;
+color: green;
+}
+
+th {
+text-align: center;
+}

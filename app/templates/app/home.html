@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body>
+ <h1>BlockExchange</h1>
+<div>
+      {% if user.is_authenticated %}
+                    {% block content %}
+
+                    {% endblock %}
+                 <a href="/userpage"><button type="submit" class="btn btn-lg mybt">Dashboard</button></a>
+                 <p></p>
+                 <a href="/logout"><button type="submit" class="btn btn-lg mybt">Logout</button></a>
+
+                {% if user.is_superuser %}
+                <p></p>
+                <h3>Exchange not working for superusers</h3>
+                      <p></p>
+                <h3>Analytics</h3>
+
+           {% for user in users%}
+           <p>User {{user.username}} has {{user.wallet.btcBalance}} BTC and his profit is {{user.wallet.profit}} $</p>
+           {% endfor %}
+                {% endif %}
+
+                {% else %}
+
+                <a href="/login"><button type="submit" class="btn btn-lg mybt">Login Here</button></a>
+                <p><a href="/register" class="dac">Don't have an account? Create one here</a> </p>
+                {%endif%}
+
+</div>
+</body>
+</html>
