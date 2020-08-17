@@ -32,7 +32,7 @@ class BuyOrder:
     def id(self):
         return self._id
 
-
+# Data container
 class Wallet(models.Model):
 
     _id = ObjectIdField()
